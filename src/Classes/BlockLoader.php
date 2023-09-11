@@ -18,22 +18,24 @@ class BlockLoader
      *
      * @param  string  $path  The absolute path to loop through
      *
-     * @return void
+     * @return bool
      * @throws \Exception if supplied $path is not a directory
      * @see Blocks::registerBlockDirectory() Use this method instead
      *
      */
-    public function registerBlockPath(string $path): void
+    public function registerBlockPath(string $path): bool
     {
         if (! is_dir($path)) {
             throw new \Exception("Path is not a directory \"{$path}\"");
         }
 
         if (in_array($path, $this->blockPaths)) {
-            return;
+            return false;
         }
 
         $this->blockPaths[] = $path;
+
+        return true;
     }
 
     /**

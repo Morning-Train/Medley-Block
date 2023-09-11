@@ -32,18 +32,29 @@ class Blocks
     }
 
     /**
+     * Has setup() been called correctly
+     *
+     * @return bool
+     */
+    public static function isInit(): bool
+    {
+        return static::$isInitialized;
+    }
+
+    /**
      * Register a directory containing blocks
      *
      * @param  string  $path
+     * @return bool
      * @throws \Exception Throws is $path is not a directory
      */
-    public static function registerBlockDirectory(string $path): void
+    public static function registerBlockDirectory(string $path): bool
     {
         if (! isset(static::$blockLoader)) {
             static::$blockLoader = new BlockLoader();
         }
 
-        static::$blockLoader->registerBlockPath($path);
+        return static::$blockLoader->registerBlockPath($path);
     }
 
     /**
@@ -71,5 +82,15 @@ class Blocks
     public static function getBlockLoader(): BlockLoader
     {
         return static::$blockLoader;
+    }
+
+    /**
+     * Get access to the active Block Service
+     *
+     * @return Service
+     */
+    public static function getBlockService(): Service
+    {
+        return static::$service;
     }
 }
