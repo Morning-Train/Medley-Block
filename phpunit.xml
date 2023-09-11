@@ -2,9 +2,9 @@
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="vendor/autoload.php"
+    bootstrap="tests/bootstrap.php"
     colors="true"
-    executionOrder="default"
+    executionOrder="random"
     failOnWarning="true"
     failOnRisky="true"
     failOnEmptyTestSuite="true"
@@ -14,6 +14,9 @@
     <testsuites>
         <testsuite name="Unit Test Suite">
             <directory>./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration Test Suite">
+            <directory>./tests/Integration/</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wp.cdn.mtra.in/default/schemas/block.json",
+  "apiVersion": 3,
+  "name": "test/serverside1",
+  "title": "Test Block",
+  "category": "test",
+  "icon": "universal-access-alt",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "content": {
+      "type": "string"
+    }
+  }
+}

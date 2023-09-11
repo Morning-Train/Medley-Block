@@ -73,7 +73,7 @@ class BlockLoader
      *
      * @return void
      */
-    protected function loadBlocksInPath(string $path): void
+    public function loadBlocksInPath(string $path): void
     {
         $cacheFile = $path . "/" . $this->cacheFilename;
         if (\wp_get_environment_type() === 'production' && file_exists($cacheFile)) {
@@ -105,7 +105,7 @@ class BlockLoader
      *
      * @return string[] An array containing the full paths of block.json files
      */
-    protected function locateBlocksInPath(string $path): array
+    public function locateBlocksInPath(string $path): array
     {
         $blocks = [];
 
@@ -129,7 +129,7 @@ class BlockLoader
      *
      * @return string[] An array of full .php file paths
      */
-    protected function locateBlockDependencies(string $blockMetaFile): array
+    public function locateBlockDependencies(string $blockMetaFile): array
     {
         $dir = dirname($blockMetaFile);
         $dependencies = [];

@@ -61,8 +61,9 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage"
+        "test": "vendor/bin/pest --group=unit",
+        "test-integration": "vendor/bin/pest --group=integration",
+        "test-coverage": "vendor/bin/pest  --group=unit --coverage"
     },
     "suggest": {
         "morningtrain/wp-view": "Allows rendering Blade Views as block templates"
