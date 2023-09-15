@@ -125,7 +125,7 @@ used so that the server doesn't have to look for them on every request.
 To clear this cache you can use the CLI command:
 
 ```sh
-wp wp-blocks deleteCacheFiles
+wp wp-blocks deleteCache
 ```
 
 ## Credits

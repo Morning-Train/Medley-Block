@@ -7,7 +7,9 @@ use Morningtrain\WP\Blocks\Classes\Blocks as BlocksInstance;
 
 /**
  * @method static registerBlocksPath(string $path): BlocksInstance
- * @method static container(): Container
+ * @method static deleteCache(): bool
+ *
+ * @see \Morningtrain\WP\Blocks\Classes\Blocks
  */
 class Blocks extends Facade
 {

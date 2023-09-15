@@ -15,14 +15,18 @@ class Blocks
     private CacheInterface $cache;
     private array $phpFileProperties = ['phpScript', 'viewPhpScript', 'editorPhpScript'];
     private Container $app;
+    private string $cacheKey = 'blocks';
 
     public function __construct(Container $app, BlockRegistrator $blockRegistrator, CacheInterface $cache)
     {
         $this->blockRegistrator = $blockRegistrator;
         $this->cache = $cache;
         $this->app = $app;
-        
+
         \add_action('init', [$this, 'init']);
+        if (class_exists("\WP_CLI")) {
+            \WP_CLI::add_command('wp-blocks', $this->app->make(Cli::class));
+        }
     }
 
     public function init(): void
@@ -39,8 +43,7 @@ class Blocks
         if (\wp_get_environment_type() !== 'production') {
             $blocks = $this->getBlocksDataAssoc($blocks);
         } else {
-            dump($this->cache);
-            $blocks = $this->cache->get('blocks-data', function (ItemInterface $item) use ($blocks) {
+            $blocks = $this->cache->get($this->cacheKey, function (ItemInterface $item) use ($blocks) {
                 $item->expiresAfter(DAY_IN_SECONDS * 30);
 
                 return $this->getBlocksDataAssoc($blocks);
@@ -84,6 +87,11 @@ class Blocks
     {
         \add_filter('block_type_metadata_settings',
             [$this->app->make(BlockSettingsExtender::class), 'allowViewRenderInBlockMeta'], 99, 3);
+    }
+
+    public function deleteCache(): bool
+    {
+        return $this->cache->delete($this->cacheKey);
     }
 }
 
