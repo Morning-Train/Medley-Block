@@ -82,6 +82,11 @@ class Blocks
         return $this;
     }
 
+    public function getBlocksPaths(): array
+    {
+        return $this->paths;
+    }
+
     public function extendBlockMetaSettings()
     {
         \add_filter('block_type_metadata_settings',
