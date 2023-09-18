@@ -30,7 +30,8 @@
     },
     "require-dev": {
         "brain/monkey": "^2.6",
-        "dingo-d/wp-pest-integration-test-setup": "^1.6"
+        "dingo-d/wp-pest-integration-test-setup": "^1.6",
+        "morningtrain/wp-view": "^v0.4.3"
     },
     "scripts": {
         "setup-test": "vendor/bin/wp-pest setup theme",
