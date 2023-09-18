@@ -4,20 +4,16 @@ use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Morningtrain\WP\Blocks\Classes\BlockMetaFileParser;
 
-beforeAll(function () {
+beforeEach(function () {
     Monkey\setUp();
     Functions\when('wp_json_file_decode')->alias(function ($file) {
         return json_decode(file_get_contents($file), true);
     });
-
-});
-
-beforeEach(function () {
     $this->filesDir = dirname(__FILE__, 2) . "/_files";
 
 });
 
-afterAll(function () {
+afterEach(function () {
     Monkey\tearDown();
 });
 

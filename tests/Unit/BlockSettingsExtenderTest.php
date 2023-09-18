@@ -4,16 +4,13 @@ use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Morningtrain\WP\Blocks\Classes\BlockSettingsExtender;
 
-beforeAll(function () {
+beforeEach(function () {
     Monkey\setUp();
     Functions\when('get_block_wrapper_attributes')->justReturn([]);
-});
-
-beforeEach(function () {
     $this->filesDir = dirname(__FILE__, 2) . "/_files";
 });
 
-afterAll(function () {
+afterEach(function () {
     Monkey\tearDown();
 });
 

@@ -2,14 +2,12 @@
 
 use Brain\Monkey;
 
-beforeAll(function () {
+return;
+
+beforeEach(function () {
     Monkey\setUp();
 });
 
-afterAll(function () {
+afterEach(function () {
     Monkey\tearDown();
-});
-
-it('has Block main class', function () {
-    expect('feae')->toBeString();
 });

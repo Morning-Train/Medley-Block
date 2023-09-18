@@ -1,2 +1,2 @@
 <?php
-// foo
+echo "bar";

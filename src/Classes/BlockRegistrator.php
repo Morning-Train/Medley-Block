@@ -45,7 +45,7 @@ class BlockRegistrator
         }
 
         foreach ($deps as $dep) {
-            require_once $dep;
+            require $dep;
         }
     }
 

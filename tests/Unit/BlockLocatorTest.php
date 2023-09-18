@@ -5,15 +5,12 @@ use Brain\Monkey\Functions;
 use Morningtrain\WP\Blocks\Classes\BlockLocator;
 use Symfony\Component\Finder\Finder;
 
-beforeAll(function () {
-    Monkey\setUp();
-});
-
 beforeEach(function () {
+    Monkey\setUp();
     $this->filesDir = dirname(__FILE__, 2) . "/_files";
 });
 
-afterAll(function () {
+afterEach(function () {
     Monkey\tearDown();
 });
 
