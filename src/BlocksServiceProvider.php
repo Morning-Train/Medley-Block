@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace Morningtrain\WP\Blocks;
 
 use Illuminate\Support\ServiceProvider;
 use Morningtrain\WP\Blocks\Classes\Blocks;
@@ -11,8 +11,6 @@ class BlocksServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->when(Blocks::class)
-            ->needs(AbstractAdapter::class)
-            ->give(PhpFilesAdapter::class);
+        return true;
     }
 }
