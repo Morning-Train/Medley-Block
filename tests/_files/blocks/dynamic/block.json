@@ -1,0 +1,15 @@
+{
+    "$schema": "https://wp.cdn.mtra.in/default/schemas/block.json",
+    "apiVersion": 3,
+    "name": "test/dynamic",
+    "title": "Dynamic Test Block",
+    "category": "test",
+    "icon": "universal-access-alt",
+    "editorScript": "file:./index.js",
+    "phpScript": [
+        "file:../../dummies/foo.php",
+        "file:../../dummies/bar.php"
+    ],
+    "viewPhpScript": "file:../../dummies/bar.php",
+    "editorPhpScript": "file:../../dummies/foo.php"
+}

@@ -2,19 +2,18 @@
 
 namespace Morningtrain\WP\Blocks\Classes;
 
-use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
-use Symfony\Contracts\Cache\ItemInterface;
+use \Symfony\Contracts\Cache\ItemInterface;
 use \Symfony\Contracts\Cache\CacheInterface;
 use \Illuminate\Container\Container;
 
 class Blocks
 {
-    protected array $paths = [];
-    protected BlockLocator $blockLocator;
-    protected BlockRegistrator $blockRegistrator;
-    private CacheInterface $cache;
-    private array $phpFileProperties = ['phpScript', 'viewPhpScript', 'editorPhpScript'];
     private Container $app;
+    private CacheInterface $cache;
+    private BlockRegistrator $blockRegistrator;
+
+    private array $paths = [];
+    private array $phpFileProperties = ['phpScript', 'viewPhpScript', 'editorPhpScript'];
     private string $cacheKey = 'blocks';
 
     public function __construct(Container $app, BlockRegistrator $blockRegistrator, CacheInterface $cache)

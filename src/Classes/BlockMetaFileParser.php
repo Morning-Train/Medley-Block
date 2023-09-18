@@ -13,16 +13,16 @@ class BlockMetaFileParser
      */
     public function __construct(string $metaFile)
     {
-        if (! file_exists($metaFile)) {
-            throw new \Exception("BlockMetaFileParse needs a metafile. File \"$metaFile\" does not exist.");
-        }
-
         $this->metaFile = $metaFile;
         $this->loadFile();
     }
 
-    protected function loadFile(): void
+    public function loadFile(): void
     {
+        if (! file_exists($this->metaFile)) {
+            throw new \Exception("BlockMetaFileParse needs a metafile. File \"{$this->metaFile}\" does not exist.");
+        }
+
         $this->metaData = \wp_json_file_decode($this->metaFile, ['associative' => true]);
     }
 
@@ -41,11 +41,16 @@ class BlockMetaFileParser
             return null;
         }
 
-        $realpath = realpath(dirname($this->metaFile) . "/" . str_replace('file:', '', $fileString));
+        $realpath = $this->resolveRealpath($fileString);
         if ($realpath === false) {
             return null;
         }
 
         return $realpath;
+    }
+
+    public function resolveRealpath(string $fileString): false|string
+    {
+        return realpath(dirname($this->metaFile) . "/" . str_replace('file:', '', $fileString));
     }
 }
