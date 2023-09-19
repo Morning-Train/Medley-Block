@@ -33,9 +33,14 @@
         "dingo-d/wp-pest-integration-test-setup": "^1.6"
     },
     "scripts": {
-        "setup-test": "vendor/bin/wp-pest setup theme",
+        "setup-test": [
+            "vendor/bin/wp-pest setup theme"
+        ],
         "test": "vendor/bin/pest --group=unit",
-        "test-integration": "vendor/bin/pest --group=integration",
+        "test-integration": [
+            "cp -r tests/_files/blocks wp/src/wp-content",
+            "vendor/bin/pest --group=integration"
+        ],
         "test-coverage": "vendor/bin/pest  --group=unit --coverage"
     },
     "suggest": {
@@ -48,6 +53,14 @@
             "pestphp/pest-plugin": true,
             "koodimonni/composer-dropin-installer": true,
             "mnsami/composer-custom-directory-installer": true
+        }
+    },
+    "extra": {
+        "foo": 1,
+        "laravel": {
+            "providers": [
+                "Morningtrain\\WP\\Blocks\\ServiceProvider"
+            ]
         }
     }
 }
