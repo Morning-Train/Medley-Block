@@ -2,14 +2,14 @@
 
 namespace Morningtrain\WP\Blocks;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Morningtrain\WP\Blocks\Classes\BlockRegistrator;
 use Morningtrain\WP\Blocks\Classes\Blocks;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 use Morningtrain\WP\Facades\Blocks as BlocksFacade;
 
-class BlocksServiceProvider extends ServiceProvider
+class ServiceProvider extends IlluminateServiceProvider
 {
     public function register(): void
     {
