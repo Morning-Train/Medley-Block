@@ -56,7 +56,7 @@
         }
     },
     "extra": {
-        "foo": 1,
+        "foo": 2,
         "laravel": {
             "providers": [
                 "Morningtrain\\WP\\Blocks\\ServiceProvider"
