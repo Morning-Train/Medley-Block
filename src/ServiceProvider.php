@@ -2,6 +2,7 @@
 
 namespace Morningtrain\WP\Blocks;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Morningtrain\WP\Blocks\Classes\BlockRegistrator;
 use Morningtrain\WP\Blocks\Classes\Blocks;
@@ -18,10 +19,12 @@ class ServiceProvider extends IlluminateServiceProvider
         $this->app->singleton('wp-blocks',
             fn($container) => new Blocks($container, new BlockRegistrator(),
                 new PhpFilesAdapter('wp-blocks', DAY_IN_SECONDS, __DIR__ . "/_php_cache")));
+
+        $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'wp-blocks');
     }
 
     public function boot(): void
     {
-        BlocksFacade::registerBlocksPath("/app/themes/theme/public/build/blocks");
+        BlocksFacade::registerBlocksPath($this->app->basePath($this->app->get('config')->get('wp-blocks.path')));
     }
 }
