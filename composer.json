@@ -1,5 +1,5 @@
 {
-    "name": "morningtrain/wp-blocks",
+    "name": "morningmedley/blocks",
     "description": "A package for loading WordPress blocks with support for Blade templates",
     "keywords": [
         "wordpress",
@@ -17,8 +17,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Morningtrain\\WP\\Facades\\": "facades/",
-            "Morningtrain\\WP\\Blocks\\": "src/"
+            "MorningMedley\\Facades\\": "facades/",
+            "MorningMedley\\Blocks\\": "src/"
         }
     },
     "require": {
@@ -58,7 +58,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Morningtrain\\WP\\Blocks\\ServiceProvider"
+                "MorningMedley\\Blocks\\ServiceProvider"
             ]
         }
     }

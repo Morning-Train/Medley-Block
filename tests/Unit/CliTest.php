@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use Morningtrain\WP\Blocks\Classes\Cli;
+use MorningMedley\Blocks\Classes\Cli;
 
 beforeEach(function () {
     Monkey\setUp();

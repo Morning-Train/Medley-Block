@@ -1,15 +1,15 @@
 <?php
 
-namespace Morningtrain\WP\Facades;
+namespace MorningMedley\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Morningtrain\WP\Blocks\Classes\Blocks as BlocksInstance;
+use MorningMedley\Blocks\Classes\Blocks as BlocksInstance;
 
 /**
  * @method static registerBlocksPath(string $path): BlocksInstance
  * @method static deleteCache(): bool
  *
- * @see \Morningtrain\WP\Blocks\Classes\Blocks
+ * @see \MorningMedley\Blocks\Classes\Blocks
  */
 class Blocks extends Facade
 {

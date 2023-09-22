@@ -1,6 +1,6 @@
 <?php
 
-namespace Morningtrain\WP\Blocks\Classes;
+namespace MorningMedley\Blocks\Classes;
 
 use \Symfony\Contracts\Cache\ItemInterface;
 use \Symfony\Contracts\Cache\CacheInterface;

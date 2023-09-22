@@ -1,6 +1,6 @@
 <?php
 
-namespace Morningtrain\WP\Blocks\Classes;
+namespace MorningMedley\Blocks\Classes;
 
 class BlockMetaFileParser
 {

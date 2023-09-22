@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use Morningtrain\WP\Blocks\Classes\BlockLocator;
+use MorningMedley\Blocks\Classes\BlockLocator;
 use Symfony\Component\Finder\Finder;
 
 beforeEach(function () {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Morningtrain\WP\Blocks;
+namespace MorningMedley\Blocks;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use Morningtrain\WP\Blocks\Classes\BlockRegistrator;
-use Morningtrain\WP\Blocks\Classes\Blocks;
+use MorningMedley\Blocks\Classes\BlockRegistrator;
+use MorningMedley\Blocks\Classes\Blocks;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
-use Morningtrain\WP\Facades\Blocks as BlocksFacade;
+use MorningMedley\Facades\Blocks as BlocksFacade;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
@@ -25,6 +25,8 @@ class ServiceProvider extends IlluminateServiceProvider
 
     public function boot(): void
     {
-        BlocksFacade::registerBlocksPath($this->app->basePath($this->app->get('config')->get('wp-blocks.path')));
+        foreach ((array) $this->app->get('config')->get('wp-blocks.path') as $path) {
+            BlocksFacade::registerBlocksPath($this->app->basePath($path));
+        }
     }
 }

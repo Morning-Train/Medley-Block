@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use Morningtrain\WP\Blocks\ServiceProvider;
+use MorningMedley\Blocks\ServiceProvider;
 
 beforeEach(function () {
     Monkey\setUp();
