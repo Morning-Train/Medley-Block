@@ -2,19 +2,14 @@
 
 namespace Morningtrain\WP\Blocks\Classes;
 
-use Morningtrain\WP\Blocks\Blocks;
-
 class Cli
 {
-    /**
-     * Delete cache files
-     *
-     * @return void
-     */
-    public function deleteCacheFiles(): void
+    public function deleteCache()
     {
-        $deletedCacheFiles = Blocks::getBlockLoader()->deleteCacheFiles();
-        $num = count($deletedCacheFiles);
-        \WP_CLI::success("Deleted $num file(s)");
+        if (\Morningtrain\WP\Facades\Blocks::deleteCache()) {
+            \WP_CLI::success("WP-Blocks cache has been deleted.");
+        } else {
+            \WP_CLI::error("WP-Blocks cache could not be deleted.");
+        }
     }
 }

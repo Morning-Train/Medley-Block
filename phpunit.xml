@@ -2,7 +2,7 @@
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="vendor/autoload.php"
+    bootstrap="tests/bootstrap.php"
     colors="true"
     executionOrder="random"
     failOnWarning="true"
@@ -12,14 +12,22 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="Unit">
+        <testsuite name="Unit Test Suite">
             <directory>./tests/Unit</directory>
         </testsuite>
+        <testsuite name="Integration Test Suite">
+            <directory>./tests/Integration/</directory>
+        </testsuite>
     </testsuites>
-    <coverage>
+    <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./src</directory>
         </include>
+        <exclude>
+            <file>./src/Build/BuildExample.php</file>
+            <file>./src/Menu/BemMenuWalker.php</file>
+            <file>./src/ConfigProject/ConfigProjectExample.php</file>
+        </exclude>
         <report>
             <text outputFile="./coverage/text-coverage.txt"/>
             <html outputDirectory="./coverage/report"/>
@@ -31,6 +39,11 @@
         <junit outputFile="./phpunit-report.xml"/>
     </logging>
     <php>
+        <env name="TEST" value="true" force="true" />
+        <server name="DB_NAME" value="es_libs_tests"/>
+        <server name="DB_USER" value="root"/>
+        <server name="DB_PASSWORD" value=""/>
+        <server name="DB_HOST" value="localhost"/>
         <server name="XDEBUG_MODE" value="coverage"/>
     </php>
 </phpunit>

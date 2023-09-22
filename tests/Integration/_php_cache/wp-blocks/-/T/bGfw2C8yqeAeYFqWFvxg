@@ -1,0 +1,31 @@
+<?php //blocks
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? 1697636723 : Hydrator::hydrate(
+    $o = [
+        clone (Registry::$prototypes['©'] ?? Registry::p('©')),
+    ],
+    null,
+    [],
+    $o[0],
+    [
+        [
+            'ì=ò`' => [
+                [
+                    'metaFile' => '/app/themes/theme/repos/wp-blocks/tests/_files/blocks/dynamic/block.json',
+                    'phpScript' => [
+                        '/app/themes/theme/repos/wp-blocks/tests/_files/dummies/foo.php',
+                        '/app/themes/theme/repos/wp-blocks/tests/_files/dummies/bar.php',
+                    ],
+                    'viewPhpScript' => [
+                        '/app/themes/theme/repos/wp-blocks/tests/_files/dummies/bar.php',
+                    ],
+                    'editorPhpScript' => [
+                        '/app/themes/theme/repos/wp-blocks/tests/_files/dummies/foo.php',
+                    ],
+                ],
+            ],
+        ],
+    ]
+);

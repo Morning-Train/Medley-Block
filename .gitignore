@@ -6,3 +6,5 @@ auth.json
 .phpunit.result.cache
 
 phpunit-report.xml
+/wp-content
+/wp

@@ -38,6 +38,27 @@ composer require morningtrain/wp-blocks
 
 ## Usage
 
+
+### SETUP (WIP)
+
+```php
+use Illuminate\Container\Container;
+use Morningtrain\WP\Blocks\Classes\BlockRegistrator;
+use Morningtrain\WP\Blocks\Classes\Blocks;
+use Morningtrain\WP\Facades\Blocks as BlocksFacade;
+use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
+
+$container = new Container();
+BlocksFacade::setFacadeApplication($container);
+
+$container->singleton('wp-blocks',
+    fn($container) => new Blocks($container, new BlockRegistrator(),
+        new PhpFilesAdapter('wp-blocks', DAY_IN_SECONDS, __DIR__ . "/_php_cache")));
+
+BlocksFacade::registerBlocksPath(__DIR__ . "/public/build/blocks");
+```
+
+
 ### Loading the block directory
 
 To initialize the package and/or to load blocks from a path use `Blocks::setup`
@@ -104,7 +125,7 @@ used so that the server doesn't have to look for them on every request.
 To clear this cache you can use the CLI command:
 
 ```sh
-wp wp-blocks deleteCacheFiles
+wp wp-blocks deleteCache
 ```
 
 ## Credits
