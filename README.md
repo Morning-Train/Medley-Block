@@ -1,76 +1,65 @@
-# Morningtrain\WP\Blocks
+# MorningMedley - Blocks
 
-A Morningtrain package for working with WordPress blocks more easily.
-
-## 📋 Table of Contents
-
-[[_TOC_]]
+A MorningMedley service for WordPress blocks.
 
 ## Introduction
 
 This tool is made for organizing WordPress Gutenberg blocks!
 
-This tool lets you:
+This service lets you:
 
 - Load all blocks found in a directory
 - Render Blade views by defining them as `renderView` in block meta
-- Load PHP dependencies by placing `*.php` files next to the `block.json` files
+- Load PHP dependencies by adding them to `phpScript`, `editorPhpScript` and `viewPhpScript` in `block.json`
 
 ## Getting Started
 
 To get started install the package as described below in [Installation](#installation).
 
-To use the tool have a look at [Usage](#usage)
+Look at [Usage](#usage) to learn how to, well, use it.
 
 ### Installation
 
 Install with composer
 
 ```bash
-composer require morningtrain/wp-blocks
+composer require morningmedley/blocks
 ```
 
 ## Dependencies
 
-### morningtrain/php-loader
+###    
 
-[PHP Loader](https://github.com/Morning-Train/php-loader) is used to load and initialize all Hooks
+- [PHP Loader](https://github.com/Morning-Train/php-loader) is used to load and initialize all Hooks
+- PHP 8.0 or greater
+- [Symfony Finder](https://symfony.com/doc/current/components/finder.html) is used to locate blocks and then register
+  them
+- [symfony/cache](https://symfony.com/doc/current/components/cache.html) is used to cache the found files and their
+  dependencies in production for better performance
+- [illuminate/container](https://github.com/illuminate/container) is the container wrapping the service
+- [illuminate/support](https://github.com/illuminate/support) is used for Facades and for Collections
 
 ## Usage
 
-
-### SETUP (WIP)
-
-```php
-use Illuminate\Container\Container;
-use Morningtrain\WP\Blocks\Classes\BlockRegistrator;
-use Morningtrain\WP\Blocks\Classes\Blocks;
-use Morningtrain\WP\Facades\Blocks as BlocksFacade;
-use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
-
-$container = new Container();
-BlocksFacade::setFacadeApplication($container);
-
-$container->singleton('wp-blocks',
-    fn($container) => new Blocks($container, new BlockRegistrator(),
-        new PhpFilesAdapter('wp-blocks', DAY_IN_SECONDS, __DIR__ . "/_php_cache")));
-
-BlocksFacade::registerBlocksPath(__DIR__ . "/public/build/blocks");
-```
-
-
-### Loading the block directory
-
-To initialize the package and/or to load blocks from a path use `Blocks::setup`
+Add the paths containing blocks to the application config and make sure that the service has been registered as a
+service.
 
 ```php
-use Morningtrain\WP\Blocks\Blocks;
-// Tell Blocks where the built/compiled files are located
-Blocks::setup(__DIR__ . "/public/build/blocks");
-
-// To add another directory
-Blocks::registerBlockDirectory(__DIR__ . "/public/build/blocks");
+<?php return [
+    'app' => [
+        'providers' => [
+            'MorningMedley\\Blocks\\ServiceProvider',
+        ],
+    ],
+    'wp-blocks' => [
+        'path' => [
+            'public/build/blocks',
+        ],
+    ],
+];
 ```
+
+**Note:** `public/build/blocks` is the default path.
 
 ## Using a View
 
