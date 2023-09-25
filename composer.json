@@ -23,10 +23,10 @@
     },
     "require": {
         "php": "^8.0",
-        "morningtrain/php-loader": "^0.3.2",
         "illuminate/container": "^8|^9",
         "illuminate/support": "^8|^9",
-        "symfony/cache": "^v6.3.4"
+        "symfony/cache": "^v6.3.4",
+        "symfony/finder": "^v6.3"
     },
     "require-dev": {
         "brain/monkey": "^2.6",

@@ -30,7 +30,6 @@ composer require morningmedley/blocks
 
 ###    
 
-- [PHP Loader](https://github.com/Morning-Train/php-loader) is used to load and initialize all Hooks
 - PHP 8.0 or greater
 - [Symfony Finder](https://symfony.com/doc/current/components/finder.html) is used to locate blocks and then register
   them
