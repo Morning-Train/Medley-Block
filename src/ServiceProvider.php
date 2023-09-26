@@ -16,16 +16,16 @@ class ServiceProvider extends IlluminateServiceProvider
     {
         BlocksFacade::setFacadeApplication($this->app);
 
-        $this->app->singleton('wp-blocks',
+        $this->app->singleton('blocks',
             fn($container) => new Blocks($container, new BlockRegistrator(),
-                new PhpFilesAdapter('wp-blocks', DAY_IN_SECONDS, __DIR__ . "/_php_cache")));
+                new PhpFilesAdapter('blocks', DAY_IN_SECONDS, __DIR__ . "/_php_cache")));
 
-        $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'wp-blocks');
+        $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'blocks');
     }
 
     public function boot(): void
     {
-        foreach ((array) $this->app->get('config')->get('wp-blocks.path') as $path) {
+        foreach ((array) $this->app->get('config')->get('blocks.path') as $path) {
             BlocksFacade::registerBlocksPath($this->app->basePath($path));
         }
     }
