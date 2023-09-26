@@ -15,6 +15,6 @@ class Blocks extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'wp-blocks';
+        return 'blocks';
     }
 }
