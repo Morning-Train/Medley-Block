@@ -15,10 +15,9 @@ class ServiceProvider extends IlluminateServiceProvider
     public function register(): void
     {
         BlocksFacade::setFacadeApplication($this->app);
-
         $this->app->singleton('blocks',
             fn($container) => new Blocks($container, new BlockRegistrator(),
-                new PhpFilesAdapter('blocks', DAY_IN_SECONDS, __DIR__ . "/_php_cache")));
+                $this->app->make('file.cache')));
 
         $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'blocks');
     }
