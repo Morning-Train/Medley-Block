@@ -24,7 +24,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
     public function boot(): void
     {
-        foreach ((array) $this->app->get('config')->get('block.path') as $path) {
+        foreach ((array) $this->app->get('config')->get('block.paths') as $path) {
             BlockFacade::registerBlocksPath($this->app->basePath($path));
         }
     }

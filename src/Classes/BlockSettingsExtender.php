@@ -21,7 +21,7 @@ class BlockSettingsExtender
                 'content' => $content,
                 'block' => $block,
                 'blockProps' => \get_block_wrapper_attributes(),
-            ]);
+            ])->render();
         };
 
         return $settings;

@@ -1,3 +1,3 @@
 <?php return [
-    'path' => "public/build/blocks",
+    'paths' => "public/build/blocks",
 ];
