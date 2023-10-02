@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Blocks\Classes\BlockRegistrator;
+use MorningMedley\Block\Classes\BlockRegistrator;
 
 beforeEach(function () {
     Monkey\setUp();

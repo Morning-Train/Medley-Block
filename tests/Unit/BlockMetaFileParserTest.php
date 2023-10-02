@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Blocks\Classes\BlockMetaFileParser;
+use MorningMedley\Block\Classes\BlockMetaFileParser;
 
 beforeEach(function () {
     Monkey\setUp();

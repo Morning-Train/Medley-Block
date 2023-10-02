@@ -18,7 +18,7 @@
     "autoload": {
         "psr-4": {
             "MorningMedley\\Facades\\": "facades/",
-            "MorningMedley\\Blocks\\": "src/"
+            "MorningMedley\\Block\\": "src/"
         }
     },
     "require": {
@@ -58,7 +58,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MorningMedley\\Blocks\\ServiceProvider"
+                "MorningMedley\\Block\\ServiceProvider"
             ]
         }
     }

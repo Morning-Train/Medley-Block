@@ -3,8 +3,8 @@
 use Yoast\WPTestUtils\BrainMonkey\TestCase;
 use Morningtrain\WP\Facades\Blocks as BlocksFacade;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
-use MorningMedley\Blocks\Classes\Blocks;
-use MorningMedley\Blocks\Classes\BlockRegistrator;
+use MorningMedley\Block\Classes\Blocks;
+use MorningMedley\Block\Classes\BlockRegistrator;
 use Illuminate\Container\Container;
 
 if (isUnitTest()) {

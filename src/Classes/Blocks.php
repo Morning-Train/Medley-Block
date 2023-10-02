@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningMedley\Blocks\Classes;
+namespace MorningMedley\Block\Classes;
 
 use \Symfony\Contracts\Cache\ItemInterface;
 use \Symfony\Contracts\Cache\CacheInterface;

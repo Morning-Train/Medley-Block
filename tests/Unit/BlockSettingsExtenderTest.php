@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Blocks\Classes\BlockSettingsExtender;
+use MorningMedley\Block\Classes\BlockSettingsExtender;
 
 beforeEach(function () {
     Monkey\setUp();

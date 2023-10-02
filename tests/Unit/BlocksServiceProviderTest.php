@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Blocks\ServiceProvider;
+use MorningMedley\Block\ServiceProvider;
 
 beforeEach(function () {
     Monkey\setUp();

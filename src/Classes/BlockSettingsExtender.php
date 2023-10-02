@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningMedley\Blocks\Classes;
+namespace MorningMedley\Block\Classes;
 
 class BlockSettingsExtender
 {

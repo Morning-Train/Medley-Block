@@ -2,9 +2,9 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Blocks\Classes\Blocks;
-use MorningMedley\Blocks\Classes\BlockSettingsExtender;
-use MorningMedley\Blocks\Classes\Cli;
+use MorningMedley\Block\Classes\Blocks;
+use MorningMedley\Block\Classes\BlockSettingsExtender;
+use MorningMedley\Block\Classes\Cli;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 
 beforeEach(function () {
@@ -27,7 +27,7 @@ function getBlockInstance($args = [])
     $container->shouldReceive('make')->with(Cli::class);
 
     $cache = $args['cache'] ?? \Mockery::mock(PhpFilesAdapter::class);
-    $registrator = $args['registrator'] ?? \Mockery::mock(\MorningMedley\Blocks\Classes\BlockRegistrator::class);
+    $registrator = $args['registrator'] ?? \Mockery::mock(\MorningMedley\Block\Classes\BlockRegistrator::class);
 
     return new Blocks($container, $registrator, $cache);
 }
@@ -70,11 +70,11 @@ it('can get block data associative array', function () {
     $container = Mockery::mock(\Illuminate\Container\Container::class);
     $blocks = getBlockInstance(['container' => $container]);
 
-    $parserMock = \Mockery::mock(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class);
+    $parserMock = \Mockery::mock(\MorningMedley\Block\Classes\BlockMetaFileParser::class);
     $parserMock->shouldReceive('parseFileProperty')->andReturnUsing(fn($p) => [$p])->times(3);
 
     $container->shouldReceive('makeWith')
-        ->with(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class, ['metaFile' => $metaFile])
+        ->with(\MorningMedley\Block\Classes\BlockMetaFileParser::class, ['metaFile' => $metaFile])
         ->andReturn($parserMock);
 
     $blockData = $blocks->getBlockDataAssoc($metaFile);
@@ -87,7 +87,7 @@ it('can get block data assoc for multiple blocks at once', function () {
     $container = Mockery::mock(\Illuminate\Container\Container::class);
     $blocks = getBlockInstance(['container' => $container]);
 
-    $parserMock = \Mockery::mock(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class);
+    $parserMock = \Mockery::mock(\MorningMedley\Block\Classes\BlockMetaFileParser::class);
     $parserMock->shouldReceive('parseFileProperty')->andReturnUsing(fn($p) => [$p])->times(6);
 
     $container->shouldReceive('makeWith')
@@ -104,23 +104,23 @@ it('can get block data assoc for multiple blocks at once', function () {
 
 it('can initialize without using cache in local env', function () {
     $container = Mockery::mock(\Illuminate\Container\Container::class);
-    $locatorMock = Mockery::mock(\MorningMedley\Blocks\Classes\BlockLocator::class);
-    $parserMock = Mockery::mock(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class);
-    $registratorMock = Mockery::mock(\MorningMedley\Blocks\Classes\BlockRegistrator::class);
+    $locatorMock = Mockery::mock(\MorningMedley\Block\Classes\BlockLocator::class);
+    $parserMock = Mockery::mock(\MorningMedley\Block\Classes\BlockMetaFileParser::class);
+    $registratorMock = Mockery::mock(\MorningMedley\Block\Classes\BlockRegistrator::class);
 
     Functions\when('add_filter')->justReturn();
     Functions\when('wp_get_environment_type')->justReturn('local');
 
     $container->shouldReceive('make')
-        ->with(\MorningMedley\Blocks\Classes\BlockLocator::class)
+        ->with(\MorningMedley\Block\Classes\BlockLocator::class)
         ->andReturn($locatorMock);
 
     $container->shouldReceive('make')
-        ->with(\MorningMedley\Blocks\Classes\BlockSettingsExtender::class)
+        ->with(\MorningMedley\Block\Classes\BlockSettingsExtender::class)
         ->andReturn('');
 
     $container->shouldReceive('makeWith')
-        ->with(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class,
+        ->with(\MorningMedley\Block\Classes\BlockMetaFileParser::class,
             ['metaFile' => $this->filesDir . "/blocks/dynamic/block.json"])
         ->andReturn($parserMock);
 
@@ -138,24 +138,24 @@ it('can initialize without using cache in local env', function () {
 
 it('can initialize using cache in production env', function () {
     $container = Mockery::mock(\Illuminate\Container\Container::class);
-    $parserMock = Mockery::mock(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class);
-    $registratorMock = Mockery::mock(\MorningMedley\Blocks\Classes\BlockRegistrator::class);
+    $parserMock = Mockery::mock(\MorningMedley\Block\Classes\BlockMetaFileParser::class);
+    $registratorMock = Mockery::mock(\MorningMedley\Block\Classes\BlockRegistrator::class);
     $cacheMock = \Mockery::mock(PhpFilesAdapter::class);
-    $locatorMock = Mockery::mock(\MorningMedley\Blocks\Classes\BlockLocator::class);
+    $locatorMock = Mockery::mock(\MorningMedley\Block\Classes\BlockLocator::class);
 
     Functions\when('add_filter')->justReturn();
     Functions\when('wp_get_environment_type')->justReturn('production');
 
     $container->shouldReceive('make')
-        ->with(\MorningMedley\Blocks\Classes\BlockLocator::class)
+        ->with(\MorningMedley\Block\Classes\BlockLocator::class)
         ->andReturn($locatorMock);
 
     $container->shouldReceive('make')
-        ->with(\MorningMedley\Blocks\Classes\BlockSettingsExtender::class)
+        ->with(\MorningMedley\Block\Classes\BlockSettingsExtender::class)
         ->andReturn('');
 
     $container->shouldReceive('makeWith')
-        ->with(\MorningMedley\Blocks\Classes\BlockMetaFileParser::class,
+        ->with(\MorningMedley\Block\Classes\BlockMetaFileParser::class,
             ['metaFile' => $this->filesDir . "/blocks/dynamic/block.json"])
         ->andReturn($parserMock);
 

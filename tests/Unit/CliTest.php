@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Blocks\Classes\Cli;
+use MorningMedley\Block\Classes\Cli;
 
 beforeEach(function () {
     Monkey\setUp();

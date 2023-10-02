@@ -1,11 +1,11 @@
 <?php
 
-namespace MorningMedley\Blocks;
+namespace MorningMedley\Block;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use MorningMedley\Blocks\Classes\BlockRegistrator;
-use MorningMedley\Blocks\Classes\Blocks;
+use MorningMedley\Block\Classes\BlockRegistrator;
+use MorningMedley\Block\Classes\Blocks;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 use MorningMedley\Facades\Blocks as BlocksFacade;
