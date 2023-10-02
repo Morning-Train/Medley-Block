@@ -6,7 +6,7 @@ use \Symfony\Contracts\Cache\ItemInterface;
 use \Symfony\Contracts\Cache\CacheInterface;
 use \Illuminate\Container\Container;
 
-class Blocks
+class Block
 {
     private Container $app;
     private CacheInterface $cache;

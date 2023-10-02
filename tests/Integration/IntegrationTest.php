@@ -3,7 +3,7 @@
 use Yoast\WPTestUtils\BrainMonkey\TestCase;
 use Morningtrain\WP\Facades\Blocks as BlocksFacade;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
-use MorningMedley\Block\Classes\Blocks;
+use MorningMedley\Block\Classes\Block;
 use MorningMedley\Block\Classes\BlockRegistrator;
 use Illuminate\Container\Container;
 
@@ -22,7 +22,7 @@ it('can register a block', function () {
     BlocksFacade::setFacadeApplication($container);
 
     $container->singleton('wp-blocks',
-        fn($container) => new Blocks($container, new BlockRegistrator(),
+        fn($container) => new Block($container, new BlockRegistrator(),
             new PhpFilesAdapter('wp-blockz', 1, __DIR__ . "/_php_cache")));
 
     BlocksFacade::registerBlocksPath(dirname(__FILE__, 3) . "/wp/src/wp-content/blocks");

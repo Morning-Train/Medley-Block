@@ -2,7 +2,7 @@
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use MorningMedley\Block\Classes\Blocks;
+use MorningMedley\Block\Classes\Block;
 use MorningMedley\Block\Classes\BlockSettingsExtender;
 use MorningMedley\Block\Classes\Cli;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
@@ -29,7 +29,7 @@ function getBlockInstance($args = [])
     $cache = $args['cache'] ?? \Mockery::mock(PhpFilesAdapter::class);
     $registrator = $args['registrator'] ?? \Mockery::mock(\MorningMedley\Block\Classes\BlockRegistrator::class);
 
-    return new Blocks($container, $registrator, $cache);
+    return new Block($container, $registrator, $cache);
 }
 
 it('can construct', function () {

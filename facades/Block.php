@@ -3,15 +3,15 @@
 namespace MorningMedley\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use MorningMedley\Block\Classes\Blocks as BlocksInstance;
+use MorningMedley\Block\Classes\Block as BlocksInstance;
 
 /**
  * @method static registerBlocksPath(string $path): BlocksInstance
  * @method static deleteCache(): bool
  *
- * @see \MorningMedley\Block\Classes\Blocks
+ * @see \MorningMedley\Block\Classes\Block
  */
-class Blocks extends Facade
+class Block extends Facade
 {
     protected static function getFacadeAccessor()
     {
