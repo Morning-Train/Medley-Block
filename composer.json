@@ -1,5 +1,5 @@
 {
-    "name": "morningmedley/blocks",
+    "name": "morningmedley/block",
     "description": "A package for loading WordPress blocks with support for Blade templates",
     "keywords": [
         "wordpress",
