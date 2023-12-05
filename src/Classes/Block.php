@@ -39,7 +39,7 @@ class Block
             $blocks = [...$locator->locate($path), ...$blocks];
         }
 
-        if (\wp_get_environment_type() !== 'production') {
+        if ($this->app->isProduction()) {
             $blocks = $this->getBlocksDataAssoc($blocks);
         } else {
             $blocks = $this->cache->get($this->cacheKey, function (ItemInterface $item) use ($blocks) {

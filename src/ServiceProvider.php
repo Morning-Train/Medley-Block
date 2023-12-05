@@ -17,14 +17,14 @@ class ServiceProvider extends IlluminateServiceProvider
         BlockFacade::setFacadeApplication($this->app);
         $this->app->singleton('block',
             fn($container) => new Block($container, new BlockRegistrator(),
-                $this->app->make('file.cache')));
+                $this->app->make('file.cache', ['namespace' => 'block', 'defaultLifetime' => DAY_IN_SECONDS])));
 
         $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'block');
     }
 
     public function boot(): void
     {
-        foreach ((array) $this->app->get('config')->get('block.paths') as $path) {
+        foreach ((array) $this->app->make('config')->get('block.paths') as $path) {
             BlockFacade::registerBlocksPath($this->app->basePath($path));
         }
     }
