@@ -12,11 +12,11 @@ class BlockSettingsExtender
         }
 
         $settings['render_callback'] = static function ($attributes, $content, $block) use ($metadata) {
-            if (! function_exists('view')) {
+            if (! function_exists('\MorningMedley\Functions\view')) {
                 return '';
             }
 
-            return view($metadata['renderView'], [
+            return \MorningMedley\Functions\view($metadata['renderView'], [
                 'attributes' => $attributes,
                 'content' => $content,
                 'block' => $block,
