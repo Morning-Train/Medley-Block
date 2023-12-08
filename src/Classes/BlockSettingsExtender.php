@@ -12,16 +12,16 @@ class BlockSettingsExtender
         }
 
         $settings['render_callback'] = static function ($attributes, $content, $block) use ($metadata) {
-            if (! function_exists('\MorningMedley\Functions\view')) {
+            if (! class_exists('\Illuminate\Support\Facades\View')) {
                 return '';
             }
 
-            return \MorningMedley\Functions\view($metadata['renderView'], [
+            return \Illuminate\Support\Facades\View::make($metadata['renderView'], [
                 'attributes' => $attributes,
                 'content' => $content,
                 'block' => $block,
                 'blockProps' => \get_block_wrapper_attributes(),
-            ])->render();
+            ]);
         };
 
         return $settings;
