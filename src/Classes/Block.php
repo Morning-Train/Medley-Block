@@ -23,9 +23,6 @@ class Block
         $this->app = $app;
 
         \add_action('init', [$this, 'init']);
-        if (class_exists("\WP_CLI")) {
-            \WP_CLI::add_command('wp-blocks', $this->app->make(Cli::class));
-        }
     }
 
     public function init(): void
