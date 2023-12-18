@@ -19,8 +19,6 @@ afterEach(function () {
 
 function getBlockInstance($args = [])
 {
-    $wpCliMock = $args['wpCliMock'] ?? \Mockery::mock("alias:\WP_CLI")->shouldReceive('add_command')->once();
-
     Functions\expect('add_action')->once();
 
     $container = $args['container'] ?? Mockery::mock(\Illuminate\Container\Container::class);
@@ -53,16 +51,6 @@ it('can extend block meta settings', function () {
         ->with('block_type_metadata_settings', ['foo', 'allowViewRenderInBlockMeta'], 99, 3);
 
     $blocks->extendBlockMetaSettings();
-});
-
-it('can delete cache', function () {
-    $cache = \Mockery::mock(PhpFilesAdapter::class);
-
-    $blocks = getBlockInstance(['cache' => $cache]);
-
-    $cache->shouldReceive('delete')->with('blocks');
-
-    $blocks->deleteCache();
 });
 
 it('can get block data associative array', function () {
@@ -111,6 +99,8 @@ it('can initialize without using cache in local env', function () {
     Functions\when('add_filter')->justReturn();
     Functions\when('wp_get_environment_type')->justReturn('local');
 
+    $container->shouldReceive('isProduction')->andReturn(false);
+
     $container->shouldReceive('make')
         ->with(\MorningMedley\Block\Classes\BlockLocator::class)
         ->andReturn($locatorMock);
@@ -145,6 +135,8 @@ it('can initialize using cache in production env', function () {
 
     Functions\when('add_filter')->justReturn();
     Functions\when('wp_get_environment_type')->justReturn('production');
+
+    $container->shouldReceive('isProduction')->andReturn(true);
 
     $container->shouldReceive('make')
         ->with(\MorningMedley\Block\Classes\BlockLocator::class)

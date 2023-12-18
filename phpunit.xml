@@ -2,7 +2,6 @@
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="tests/bootstrap.php"
     colors="true"
     executionOrder="random"
     failOnWarning="true"
@@ -14,9 +13,6 @@
     <testsuites>
         <testsuite name="Unit Test Suite">
             <directory>./tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Integration Test Suite">
-            <directory>./tests/Integration/</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
@@ -38,12 +34,4 @@
     <logging>
         <junit outputFile="./phpunit-report.xml"/>
     </logging>
-    <php>
-        <env name="TEST" value="true" force="true" />
-        <server name="DB_NAME" value="es_libs_tests"/>
-        <server name="DB_USER" value="root"/>
-        <server name="DB_PASSWORD" value=""/>
-        <server name="DB_HOST" value="localhost"/>
-        <server name="XDEBUG_MODE" value="coverage"/>
-    </php>
 </phpunit>

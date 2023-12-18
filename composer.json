@@ -29,21 +29,15 @@
     },
     "require-dev": {
         "brain/monkey": "^2.6",
-        "dingo-d/wp-pest": "^1.6.1"
+        "dingo-d/wp-pest": "^1.6.1",
+        "illuminate/view": "^9|^10"
     },
     "scripts": {
-        "setup-test": [
-            "vendor/bin/wp-pest setup theme"
-        ],
         "test": "vendor/bin/pest --group=unit",
-        "test-integration": [
-            "cp -r tests/_files/blocks wp/src/wp-content",
-            "vendor/bin/pest --group=integration"
-        ],
         "test-coverage": "vendor/bin/pest  --group=unit --coverage"
     },
     "suggest": {
-        "morningtrain/wp-view": "Allows rendering Blade Views as block templates"
+        "morningmedley/view": "Allows rendering Blade Views as block templates"
     },
     "prefer-stable": true,
     "config": {

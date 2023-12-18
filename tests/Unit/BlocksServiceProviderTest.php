@@ -14,6 +14,12 @@ afterEach(function () {
 
 it('can register service provider', function () {
     $containerMock = Mockery::mock(\Illuminate\Container\Container::class);
+    $configMock = Mockery::mock(\Illuminate\Config\Repository::class);
+
+    $containerMock->shouldReceive('make')->with('config')->once()->andReturn($configMock);
+    $configMock->shouldReceive('set')->andReturn();
+    $configMock->shouldReceive('get')->andReturn([]);
+
     $provider = new ServiceProvider($containerMock);
-    expect($provider->register())->toBeTrue();
+    $provider->register();
 });
