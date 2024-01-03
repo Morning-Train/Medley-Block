@@ -164,3 +164,10 @@ it('can initialize using cache in production env', function () {
 
     $blocks->init();
 });
+
+it('can delete cache', function(){
+    $cacheMock = \Mockery::mock(PhpFilesAdapter::class);
+    $cacheMock->shouldReceive('delete')->with('blocks')->andReturn('true');
+    $blocks = getBlockInstance(['cache' => $cacheMock]);
+    expect($blocks->deleteCache())->toBeTrue();
+});
