@@ -34,9 +34,17 @@ class ServiceProvider extends IlluminateServiceProvider
         ]);
 
         foreach ($paths as $path) {
+            // If the path is not a directory then it might be a relative path
             if (! is_dir($path)) {
+                // Prepend path with project basepath
                 $path = $this->app->basePath($path);
+                // If this is still not a dir, then continue instead of crashing
+                if (! is_dir($path)) {
+                    continue;
+                }
             }
+
+
             $blockClass->registerBlocksPath($path);
         }
     }
