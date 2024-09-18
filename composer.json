@@ -19,16 +19,16 @@
         }
     },
     "require": {
-        "php": "^8.0",
-        "illuminate/container": "^9|^10",
-        "illuminate/support": "^9|^10",
-        "symfony/cache": "^v6",
-        "symfony/finder": "^v6"
+        "php": "^8.2",
+        "illuminate/container": "^11.23",
+        "illuminate/support": "^11.23",
+        "symfony/cache": "^v7",
+        "symfony/finder": "^v7"
     },
     "require-dev": {
         "brain/monkey": "^2.6",
         "dingo-d/wp-pest": "^1.6.1",
-        "illuminate/view": "^9|^10"
+        "illuminate/view": "^11.23"
     },
     "scripts": {
         "test": "vendor/bin/pest --group=unit",
