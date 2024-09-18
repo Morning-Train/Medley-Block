@@ -2,49 +2,31 @@
 
 namespace MorningMedley\Block\Classes;
 
-use \Symfony\Contracts\Cache\ItemInterface;
-use \Symfony\Contracts\Cache\CacheInterface;
 use \Illuminate\Container\Container;
 
 class Block
 {
     private Container $app;
-    private CacheInterface $cache;
     private BlockRegistrator $blockRegistrator;
 
     private array $paths = [];
+    private array $blocks = [];
     private array $phpFileProperties = ['phpScript', 'viewPhpScript', 'editorPhpScript'];
-    private string $cacheKey = 'blocks';
 
-    public function __construct(Container $app, BlockRegistrator $blockRegistrator, CacheInterface $cache)
+    public function __construct(Container $app, array $blocks, BlockRegistrator $blockRegistrator)
     {
         $this->blockRegistrator = $blockRegistrator;
-        $this->cache = $cache;
         $this->app = $app;
+        $this->blocks = $blocks;
 
         \add_action('init', [$this, 'init']);
     }
 
     public function init(): void
     {
-        $blocks = [];
         $this->extendBlockMetaSettings();
 
-        foreach ($this->paths as $path) {
-            /** @var BlockLocator $locater */
-            $locator = $this->app->make(BlockLocator::class);
-            $blocks = [...$locator->locate($path), ...$blocks];
-        }
-
-        if (!$this->app->isProduction()) {
-            $blocks = $this->getBlocksDataAssoc($blocks);
-        } else {
-            $blocks = $this->cache->get($this->cacheKey, function (ItemInterface $item) use ($blocks) {
-                $item->expiresAfter(DAY_IN_SECONDS * 30);
-
-                return $this->getBlocksDataAssoc($blocks);
-            });
-        }
+        $blocks = $this->getBlocksDataAssoc($this->blocks);
 
         $this->blockRegistrator->registerBlocks($blocks);
     }
@@ -88,11 +70,6 @@ class Block
     {
         \add_filter('block_type_metadata_settings',
             [$this->app->make(BlockSettingsExtender::class), 'allowViewRenderInBlockMeta'], 99, 3);
-    }
-
-    public function deleteCache(): bool
-    {
-        return $this->cache->delete($this->cacheKey);
     }
 }
 

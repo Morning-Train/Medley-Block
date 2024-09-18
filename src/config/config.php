@@ -1,3 +1,6 @@
 <?php return [
-    'paths' => ["public/build/blocks"],
+    'paths' => [
+        public_path("build/blocks"),
+    ],
+    'blocks' => []
 ];
