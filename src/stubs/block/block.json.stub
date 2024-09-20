@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Morning-Train/Medley-Block/refs/heads/master/src/schemas/block.json",
+  "apiVersion": 3,
+  "name": "{{ domain }}/{{ safename }}",
+  "version": "0.1.0",
+  "title": "{{ name }}",
+  "category": "{{ category }}",
+  "description": "{{ description }}",
+  "example": {
+    "viewportWidth": {{ viewportwidth }},
+    "attributes": {
+    }
+  },
+  "attributes": {
+  },
+  "supports": {
+  },
+  "textdomain": "{{ domain }}",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

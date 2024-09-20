@@ -5,12 +5,16 @@ namespace MorningMedley\Block;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use MorningMedley\Block\Classes\Block;
 use MorningMedley\Block\Classes\BlockLocator;
+use MorningMedley\Block\Console\BlockMakeCommand;
 
 class BlockServiceProvider extends IlluminateServiceProvider
 {
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'block');
+        $this->commands([
+            BlockMakeCommand::class,
+        ]);
     }
 
     public function boot(): void
