@@ -19,7 +19,7 @@ class BlockServiceProvider extends IlluminateServiceProvider
 
     public function boot(): void
     {
-        $paths = (array) $this->app['config']->get('block.paths', []);
+        $paths = (array) $this->app['config']->get('block.compiled', []);
 
         if (empty($paths)) {
             return;

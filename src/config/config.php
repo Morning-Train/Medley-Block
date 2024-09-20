@@ -1,6 +1,10 @@
 <?php return [
     'paths' => [
-        public_path("build/blocks"),
+        resource_path("blocks"),
     ],
-    'blocks' => []
+    'compiled' => env(
+        'BLOCK_COMPILED_PATH',
+        public_path("build/blocks"),
+    ),
+    'blocks' => [],
 ];

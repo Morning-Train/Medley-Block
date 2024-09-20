@@ -1,0 +1,15 @@
+import { useBlockProps } from '@wordpress/block-editor'
+import classNames from "classnames";
+
+export default function edit ({ attributes, setAttributes, isSelected }) {
+  const blockProps = useBlockProps({
+    className: classNames({
+      'is-selected': isSelected,
+      'not-selected': !isSelected
+    })
+  })
+
+  return (
+    <p {...blockProps}>This is {{ name }} block in the editor!</p>
+  )
+}
