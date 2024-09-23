@@ -80,6 +80,7 @@ class BlockMakeCommand extends \Illuminate\Console\Command
         if($blockType === 'dynamic'){
             $stubs['/stubs/block/dynamic-index.stub'] = $stubs['/stubs/block/index.stub'];
             unset($stubs['/stubs/block/index.stub']);
+            unset($stubs['/stubs/block/save.stub']);
         }
 
         foreach ($stubs as $stub => $fileName) {
