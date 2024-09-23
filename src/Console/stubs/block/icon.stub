@@ -1,0 +1,30 @@
+import { SVG, Path, G, Rect, Circle } from '@wordpress/components'
+
+export default (
+  <SVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.11 65.11">
+      <defs>
+        <clipPath id="clipPath4">
+          <Circle cx="72.374" cy="90.601" r="28.619"  stroke="currentcolor"/>
+        </clipPath>
+      </defs>
+      <G transform="translate(-.39418 -.93119)" display="none">
+        <image transform="rotate(-90)" x="-382.22" y="-103.77" width="502.5" height="390.78" display="inline"
+               image-rendering="optimizeSpeed" preserveAspectRatio="none"/>
+      </G>
+      <G transform="translate(-39.819 -58.046)">
+        <Circle cx="72.374" cy="90.601" r="31.273" fill="none" stroke-width="2.565"  stroke="currentcolor"/>
+        <G clip-path="url(#clipPath4)">
+          <G fill="none" stroke="#000" stroke-width="1.8188">
+            <Path d="m35.76 83.019h67.224" fill="none" stroke="currentcolor"/>
+            <Path d="m35.76 103.13h67.224" fill="none" stroke="currentcolor"/>
+            <Path d="m35.76 62.91h67.224" fill="none" stroke="currentcolor"/>
+          </G>
+          <G>
+            <Rect x="33.107" y="96.251" width="53.956" height="14.152"/>
+            <Rect x="33.107" y="75.211" width="53.956" height="14.152"/>
+            <Rect x="33.106" y="116.38" width="53.956" height="14.152"/>
+          </G>
+        </G>
+      </G>
+  </SVG>
+)

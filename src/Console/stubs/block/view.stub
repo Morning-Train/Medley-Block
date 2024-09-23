@@ -1,0 +1,14 @@
+<?php
+    /**
+     * @var \WP_Block_Type $block
+     * @var string $content
+     * @var array $attributes
+     * @var string $blockProps
+     */
+    ?>
+<p>
+    This is the {{ name }} block view!
+</p>
+@if(function_exists('dump'))
+    @php dump(['Block' => $block, 'Content' => $content, 'Attributes' => $attributes, 'BlockProps' => $blockProps]) @endphp
+@endif
