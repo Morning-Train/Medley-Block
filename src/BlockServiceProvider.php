@@ -2,6 +2,7 @@
 
 namespace MorningMedley\Block;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use MorningMedley\Block\Classes\Block;
 use MorningMedley\Block\Classes\BlockLocator;
@@ -26,7 +27,7 @@ class BlockServiceProvider extends IlluminateServiceProvider
         }
 
         if (! $this->app->configurationIsCached()) {
-            $blocks = [];
+            $blocks = $this->app['config']->get('block.blocks', []);
             foreach ($paths as $path) {
                 // If the path is not a directory then it might be a relative path
                 if (! is_dir($path)) {
