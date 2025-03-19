@@ -20,16 +20,10 @@
     },
     "require": {
         "php": "^8.2",
-        "illuminate/container": "^11.23",
-        "illuminate/support": "^11.23",
-        "illuminate/console": "^11.23",
-        "symfony/cache": "^v7",
-        "symfony/finder": "^v7"
+        "morningmedley/application": "^0.2"
     },
     "require-dev": {
-        "brain/monkey": "^2.6",
-        "dingo-d/wp-pest": "^1.6.1",
-        "illuminate/view": "^11.23"
+        "illuminate/view": "^12.3.0"
     },
     "scripts": {
         "test": "vendor/bin/pest --group=unit",
