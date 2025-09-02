@@ -2,15 +2,15 @@
 
 namespace MorningMedley\Block\Classes;
 
+use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Finder\Finder;
 
 class BlockLocator
 {
-    private Finder $finder;
 
-    public function __construct(Finder $finder)
+    public function __construct(protected Container $app, protected Finder $finder)
     {
-        $this->finder = $finder;
+
     }
 
     /**
@@ -26,7 +26,7 @@ class BlockLocator
 
         if ($this->finder->hasResults()) {
             foreach ($this->finder as $file) {
-                $blocks[] = $file->getRealPath();
+                $blocks[] = ltrim(str_replace($this->app->basePath(), '', $file->getRealPath()), "/");
             }
         }
 

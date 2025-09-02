@@ -32,9 +32,19 @@ class BlockCollection
      *
      * @return string[]
      */
-    public function list(): array
+    public function blocks(): array
     {
         return $this->blocks;
+    }
+
+    /**
+     * Get current list as absolute paths
+     *
+     * @return string[]
+     */
+    public function absoluteBlocks(): array
+    {
+        return array_map(fn(string $path) => $this->app->basePath($path), $this->blocks);
     }
 
     /**
