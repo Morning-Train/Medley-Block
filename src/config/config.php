@@ -6,5 +6,4 @@
         'BLOCK_COMPILED_PATH',
         public_path("build/blocks"),
     ),
-    'blocks' => [],
 ];
