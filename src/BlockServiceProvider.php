@@ -2,17 +2,20 @@
 
 namespace MorningMedley\Block;
 
-use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use MorningMedley\Block\Classes\Block;
 use MorningMedley\Block\Classes\BlockLocator;
 use MorningMedley\Block\Console\BlockMakeCommand;
+use MorningMedley\Facades\Block as BlockFacade;
 
 class BlockServiceProvider extends IlluminateServiceProvider
 {
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . "/config/config.php", 'block');
+
+        BlockFacade::setFacadeApplication($this->app);
+        $this->app->singleton(Block::class);
+
         $this->commands([
             BlockMakeCommand::class,
         ]);

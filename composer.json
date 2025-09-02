@@ -15,19 +15,15 @@
     ],
     "autoload": {
         "psr-4": {
-            "MorningMedley\\Block\\": "src/"
+            "MorningMedley\\Block\\": "src/",
+            "MorningMedley\\Facades\\": "facades/"
         }
     },
     "require": {
-        "php": "^8.2",
         "morningmedley/application": "^0.3"
     },
     "require-dev": {
         "illuminate/view": "^12.3.0"
-    },
-    "scripts": {
-        "test": "vendor/bin/pest --group=unit",
-        "test-coverage": "vendor/bin/pest  --group=unit --coverage"
     },
     "suggest": {
         "morningmedley/view": "Allows rendering Blade Views as block templates"

@@ -1,8 +1,11 @@
 <?php
 
-namespace MorningMedley\Block\Classes;
+namespace MorningMedley\Block;
 
 use \Illuminate\Container\Container;
+use MorningMedley\Block\Classes\BlockMetaFileParser;
+use MorningMedley\Block\Classes\BlockRegistrator;
+use MorningMedley\Block\Classes\BlockSettingsExtender;
 
 class Block
 {
