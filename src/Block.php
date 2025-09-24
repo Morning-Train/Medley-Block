@@ -181,7 +181,7 @@ class Block
 
     /**
      * Hook in to extend block meta
-     * 
+     *
      * @return void
      * @throws BindingResolutionException
      */

@@ -20,7 +20,7 @@
         }
     },
     "require": {
-        "morningmedley/application": "^0.3"
+        "morningmedley/application": "^0.4"
     },
     "require-dev": {
         "illuminate/view": "^12.3.0"
