@@ -3,8 +3,10 @@
 namespace MorningMedley\Block\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 use Illuminate\Filesystem\Filesystem;
 use MorningMedley\Application\WpContext\WpContextContract;
+use MorningMedley\Facades\Block;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -58,14 +60,12 @@ class BlockCacheCommand extends Command
         // Clear existing hook file
         $this->callSilent('block:clear');
 
-        $this->laravel->forgetInstance(\MorningMedley\Block\Block::class);
-        $block = $this->laravel->make(\MorningMedley\Block\Block::class);
-        $block->locate();
-
-        $configPath = $block->getCachePath();
+        $configPath = Block::getCachePath();
+        $blocks = $this->getFreshList();
+        ray($configPath,$blocks);
 
         $success = $this->files->put(
-            $configPath, '<?php return ' . var_export($block->blocks(), true) . ';' . PHP_EOL
+            $configPath, '<?php return ' . var_export($blocks, true) . ';' . PHP_EOL
         );
 
         if ($success === false) {
@@ -73,5 +73,21 @@ class BlockCacheCommand extends Command
         }
 
         $this->components->info('Blocks cached successfully.');
+    }
+
+    /**
+     * Boot a fresh copy of the block list
+     *
+     * @return array
+     */
+    protected function getFreshList()
+    {
+        $app = require $this->laravel->bootstrapPath('app.php');
+
+        $app->useStoragePath($this->laravel->storagePath());
+
+        $app->make(ConsoleKernelContract::class)->bootstrap();
+
+        return Block::blocks();
     }
 }
