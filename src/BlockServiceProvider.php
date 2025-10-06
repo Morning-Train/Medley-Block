@@ -21,8 +21,7 @@ class BlockServiceProvider extends IlluminateServiceProvider
 
     public function boot(): void
     {
-        /** @var Block $blockClass */
-        $this->app->make(Block::class)->boot();
+        $this->app->booted($this->bootBlockClass(...));
 
         if ($this->app->runningInConsole()) {
             $this->optimizes(
@@ -36,5 +35,11 @@ class BlockServiceProvider extends IlluminateServiceProvider
             BlockClearCommand::class,
             BlockCacheCommand::class,
         ]);
+    }
+
+    public function bootBlockClass(): void
+    {
+        /** @var Block $blockClass */
+        $this->app->make(Block::class)->boot();
     }
 }

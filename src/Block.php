@@ -206,7 +206,7 @@ class Block
      *
      * @return bool
      */
-    protected function blocksAreCached(): bool
+    public function blocksAreCached(): bool
     {
         return file_exists($this->getCachePath());
     }
