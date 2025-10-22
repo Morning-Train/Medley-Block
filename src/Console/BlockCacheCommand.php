@@ -62,7 +62,6 @@ class BlockCacheCommand extends Command
 
         $configPath = Block::getCachePath();
         $blocks = $this->getFreshList();
-        ray($configPath,$blocks);
 
         $success = $this->files->put(
             $configPath, '<?php return ' . var_export($blocks, true) . ';' . PHP_EOL
